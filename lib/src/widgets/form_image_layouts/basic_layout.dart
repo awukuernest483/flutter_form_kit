@@ -8,7 +8,8 @@ class BasicLayout extends StatelessWidget {
   final bool showInline;
   final int pageIndex;
 
-  const BasicLayout({super.key, this.showInline = false, required this.pageIndex});
+  const BasicLayout(
+      {super.key, this.showInline = false, required this.pageIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -19,30 +20,33 @@ class BasicLayout extends StatelessWidget {
     final onFormSubmitted = FlutterFormDetails.of(context).onFormSubmitted;
     final pagesLength = FlutterFormDetails.of(context).pagesLength;
     final themeColor = FlutterFormDetails.of(context).themeColor;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          children: [
-            Text(
-              "${index + 1}",
-              style: textTheme.bodyMedium
-                  ?.copyWith(color: themeColor),
-            ),
-            Icon(
-              Icons.arrow_forward,
-              size: 18,
-              color: themeColor,
-            ),
-            const SizedBox(width: 8),
-            Text(
-              page.heading,
-              style: textTheme.headlineSmall,
-            ),
-          ],
-        ),
-        Padding(
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text(
+                "${index + 1}",
+                style: textTheme.bodyMedium?.copyWith(color: themeColor),
+              ),
+              Icon(
+                Icons.arrow_forward,
+                size: 18,
+                color: themeColor,
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  page.heading,
+                  style: textTheme.headlineSmall,
+                ),
+              ),
+            ],
+          ),
+          Padding(
             padding: const EdgeInsets.only(left: 32),
             child: (page.description != null)
                 ? Padding(
@@ -52,9 +56,10 @@ class BasicLayout extends StatelessWidget {
                       style: textTheme.titleMedium?.copyWith(fontSize: 18),
                     ),
                   )
-                : const SizedBox()),
-        if (showInline)
-          Padding(
+                : const SizedBox(),
+          ),
+          if (showInline)
+            Padding(
               padding: const EdgeInsets.only(left: 32),
               child: (page.image != null)
                   ? Padding(
@@ -66,40 +71,43 @@ class BasicLayout extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     )
-                  : const SizedBox()),
-        const SizedBox(height: 24),
-        Padding(
-          padding: const EdgeInsets.only(left: 32.0),
-          child: AnswerWidget(index: index),
-        ),
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 32.0),
-              child: CustomButton(
-                text: index == pagesLength - 1 ? "submit" : "OK",
-                style: textTheme.headlineSmall?.copyWith(color: Colors.white),
-                suffixIcon: index == pagesLength - 1 ? null : Icons.check,
-                onTap: () {
-                  if(index == pagesLength - 1) {
-                    onFormSubmitted(FlutterFormDetails.of(context).pages);
-                  }else {
-                    onPageSubmitted(index);
-                  }
-                }, themeColor: themeColor,
-              ),
+                  : const SizedBox(),
             ),
-            const SizedBox(width: 16),
-            if (index != pagesLength - 1)
-              Text(
-                "press Enter ↵",
-                style:
-                    textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-              )
-          ],
-        )
-      ],
+          const SizedBox(height: 24),
+          Padding(
+            padding: const EdgeInsets.only(left: 32.0),
+            child: AnswerWidget(index: index),
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 32.0),
+                child: CustomButton(
+                  text: index == pagesLength - 1 ? "submit" : "OK",
+                  style: textTheme.headlineSmall?.copyWith(color: Colors.white),
+                  suffixIcon: index == pagesLength - 1 ? null : Icons.check,
+                  onTap: () {
+                    if (index == pagesLength - 1) {
+                      onFormSubmitted(FlutterFormDetails.of(context).pages);
+                    } else {
+                      onPageSubmitted(index);
+                    }
+                  },
+                  themeColor: themeColor,
+                ),
+              ),
+              const SizedBox(width: 16),
+              if (index != pagesLength - 1)
+                Text(
+                  "press Enter ↵",
+                  style: textTheme.bodyMedium
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

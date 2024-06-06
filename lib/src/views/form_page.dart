@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_kit/src/constants/enums.dart';
 import 'package:flutter_form_kit/src/widgets/flutter_form_details.dart';
+import 'package:flutter_form_kit/src/widgets/form_image_layouts/basic_layout.dart';
 import 'package:flutter_form_kit/src/widgets/form_image_layouts/expanded_layout.dart';
 import 'package:flutter_form_kit/src/widgets/form_image_layouts/in_between_layout.dart';
 import 'package:flutter_form_kit/src/widgets/form_image_layouts/side_expanded_layout.dart';
@@ -28,13 +29,15 @@ class _FormPageViewState extends State<FormPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return getFormPageImageLayout();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: getFormPageImageLayout());
   }
 
   getFormPageImageLayout() {
     final index = widget.index;
     if (formDetails?.pages[index].imageLayout == null) {
-      return InBetweenLayout(index: index);
+      return BasicLayout(pageIndex: index);
     }
     switch (formDetails!.pages[widget.index].imageLayout!) {
       case ImageLayout.inBetween:

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_kit/src/models/form.dart';
@@ -76,10 +78,11 @@ class _FlutterFormState extends State<FlutterForm> {
                               pagesLength: widget.form.pages.length,
                               onPageChanged: (index) =>
                                   setState(() => currentIndex = index)),
-                          if(widget.form.showLogo)...[
+                          if (widget.form.showLogo) ...[
                             const SizedBox(width: 12),
                             CustomButton(
-                              text: widget.form.logo ?? "Powered by FlutterForm",
+                              text:
+                                  widget.form.logo ?? "Powered by FlutterForm",
                               onTap: () {},
                               themeColor: widget.form.themeColor ??
                                   const Color(0xFF0445af),
@@ -89,13 +92,41 @@ class _FlutterFormState extends State<FlutterForm> {
                           ]
                         ],
                       ),
-                      body: PageView.builder(
-                        scrollDirection: Axis.vertical,
-                        physics: const PageScrollPhysics(),
-                        controller: controller,
-                        itemBuilder: (context, index) =>
-                            FormPageView(index: index),
-                        itemCount: widget.form.pages.length,
+                      body: Column(
+                        children: [
+                          const SizedBox(
+                            height: 80,
+                          ),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20.0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: LinearProgressIndicator(
+                                  minHeight: 10,
+                                  backgroundColor: Colors.grey.withAlpha(50),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      widget.form.themeColor!),
+                                  value: (currentIndex+1) / widget.form.pages.length, // Set progress to 2 out of 5
+                                ),
+                              )),
+                              const SizedBox(height: 10,),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                decoration: BoxDecoration(color: Colors.grey.withAlpha(50), borderRadius: BorderRadius.circular(50)),
+                                child: Text('Page ${currentIndex+1} / ${widget.form.pages.length}')),
+                              const SizedBox(height: 10,),
+                          Expanded(
+                            child: PageView.builder(
+                              scrollDirection: Axis.horizontal,
+                              physics: const PageScrollPhysics(),
+                              controller: controller,
+                              itemBuilder: (context, index) =>
+                                  FormPageView(index: index),
+                              itemCount: widget.form.pages.length,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

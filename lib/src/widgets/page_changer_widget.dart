@@ -43,7 +43,7 @@ class PageChangeWidget extends StatelessWidget {
             width: 32,
             height: 32,
             child: const Icon(
-              Icons.keyboard_arrow_up,
+              Icons.keyboard_arrow_left,
               color: Colors.white,
             ),
           ),
@@ -72,7 +72,7 @@ class PageChangeWidget extends StatelessWidget {
             width: 32,
             height: 32,
             child: const Icon(
-              Icons.keyboard_arrow_down,
+              Icons.keyboard_arrow_right,
               color: Colors.white,
             ),
           ),

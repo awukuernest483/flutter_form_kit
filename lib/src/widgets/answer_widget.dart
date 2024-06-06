@@ -6,6 +6,7 @@ import 'package:flutter_form_kit/src/widgets/form_type_widgets/long_text.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/multiple_choice.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/phone_number.dart';
 import 'package:flutter_form_kit/src/widgets/form_type_widgets/short_text.dart';
+import 'package:flutter_form_kit/src/widgets/form_type_widgets/single_choice.dart';
 
 import 'flutter_form_details.dart';
 
@@ -41,22 +42,47 @@ class _AnswerWidgetState extends State<AnswerWidget> {
             page: page,
             onOptionSelected: (option) {
               if (page.selectedOptions.contains(option)) {
-                FlutterFormDetails.of(context).pages[widget.index].selectedOptions.remove(option);
+                FlutterFormDetails.of(context)
+                    .pages[widget.index]
+                    .selectedOptions
+                    .remove(option);
               } else {
-                FlutterFormDetails.of(context).pages[widget.index].selectedOptions.add(option);
+                FlutterFormDetails.of(context)
+                    .pages[widget.index]
+                    .selectedOptions
+                    .add(option);
+              }
+              setState(() {});
+            });
+      case AnswerType.singleChoice:
+        return SingleChoice(
+            page: page,
+            onOptionSelected: (option) {
+              if (page.selectedOptions.contains(option)) {
+                FlutterFormDetails.of(context)
+                    .pages[widget.index]
+                    .selectedOptions
+                    .remove(option);
+              } else {
+                FlutterFormDetails.of(context)
+                    .pages[widget.index]
+                    .selectedOptions
+                    .add(option);
               }
               setState(() {});
             });
       case AnswerType.contactInfo:
         return ContactInfo(
-          fields: (fields){
-            FlutterFormDetails.of(context).pages[widget.index].formField = fields;
+          fields: (fields) {
+            FlutterFormDetails.of(context).pages[widget.index].formField =
+                fields;
           },
         );
       case AnswerType.address:
         return Address(
-          fields: (fields){
-            FlutterFormDetails.of(context).pages[widget.index].formField = fields;
+          fields: (fields) {
+            FlutterFormDetails.of(context).pages[widget.index].formField =
+                fields;
           },
         );
       case AnswerType.phoneNumber:
@@ -67,8 +93,7 @@ class _AnswerWidgetState extends State<AnswerWidget> {
             onSubmitted: (value) {
               FlutterFormDetails.of(context).onPageSubmitted(widget.index);
             },
-            controller: page.controller
-        );
+            controller: page.controller);
       case AnswerType.longText:
         return LongText(
             onChanged: (value) {
@@ -83,8 +108,14 @@ class _AnswerWidgetState extends State<AnswerWidget> {
         return MultipleChoice(
             page: page,
             onOptionSelected: (option) {
-              FlutterFormDetails.of(context).pages[widget.index].selectedOptions.clear();
-              FlutterFormDetails.of(context).pages[widget.index].selectedOptions.add(option);
+              FlutterFormDetails.of(context)
+                  .pages[widget.index]
+                  .selectedOptions
+                  .clear();
+              FlutterFormDetails.of(context)
+                  .pages[widget.index]
+                  .selectedOptions
+                  .add(option);
               setState(() {});
             });
     }
