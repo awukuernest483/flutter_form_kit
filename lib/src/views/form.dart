@@ -114,7 +114,7 @@ class _FlutterFormState extends State<FlutterForm> {
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                                 decoration: BoxDecoration(color: Colors.grey.withAlpha(50), borderRadius: BorderRadius.circular(50)),
-                                child: Text('Page ${currentIndex+1} / ${widget.form.pages.length}')),
+                                child: Text('Question ${currentIndex+1} / ${widget.form.pages.length}')),
                               const SizedBox(height: 10,),
                           Expanded(
                             child: PageView.builder(
