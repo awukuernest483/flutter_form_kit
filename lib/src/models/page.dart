@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_kit/src/constants/enums.dart';
 
 class FlutterFormPage {
+  final String? allheading;
   final String heading;
   final String? description;
   final String? image;
@@ -13,6 +14,7 @@ class FlutterFormPage {
   List<String> formField = [];
 
   FlutterFormPage({
+    this.allheading,
     required this.heading,
     this.description,
     this.image,

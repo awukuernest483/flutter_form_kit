@@ -21,11 +21,16 @@ class BasicLayout extends StatelessWidget {
     final pagesLength = FlutterFormDetails.of(context).pagesLength;
     final themeColor = FlutterFormDetails.of(context).themeColor;
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
+      padding: const EdgeInsets.only(left: 20.0, right: 20, top: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
+          Text(
+            page.allheading ?? '',
+            style: textTheme.headlineSmall,
+          ),
+          const SizedBox(height: 30,),
           Row(
             children: [
               Text(
@@ -98,12 +103,12 @@ class BasicLayout extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
-              if (index != pagesLength - 1)
-                Text(
-                  "press Enter ↵",
-                  style: textTheme.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.bold),
-                ),
+              // if (index != pagesLength - 1)
+              //   Text(
+              //     "press Enter ↵",
+              //     style: textTheme.bodyMedium
+              //         ?.copyWith(fontWeight: FontWeight.bold),
+              //   ),
             ],
           ),
         ],
