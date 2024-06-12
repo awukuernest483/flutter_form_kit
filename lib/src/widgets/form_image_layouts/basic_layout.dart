@@ -28,7 +28,7 @@ class BasicLayout extends StatelessWidget {
         children: [
           Text(
             page.allheading ?? '',
-            style: textTheme.headlineSmall,
+            style: textTheme.headlineSmall?.copyWith(fontSize: 20),
           ),
           const SizedBox(height: 30,),
           Row(
@@ -46,7 +46,7 @@ class BasicLayout extends StatelessWidget {
               Expanded(
                 child: Text(
                   page.heading,
-                  style: textTheme.titleMedium,
+                  style: textTheme.titleMedium?.copyWith(fontSize: 19),
                 ),
               ),
             ],
