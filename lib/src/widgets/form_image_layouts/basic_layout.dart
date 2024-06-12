@@ -46,7 +46,7 @@ class BasicLayout extends StatelessWidget {
               Expanded(
                 child: Text(
                   page.heading,
-                  style: textTheme.headlineSmall,
+                  style: textTheme.titleMedium,
                 ),
               ),
             ],
@@ -58,7 +58,7 @@ class BasicLayout extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       page.description!,
-                      style: textTheme.titleMedium?.copyWith(fontSize: 18),
+                      style: textTheme.titleSmall?.copyWith(fontSize: 14),
                     ),
                   )
                 : const SizedBox(),
