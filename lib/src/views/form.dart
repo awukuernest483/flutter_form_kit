@@ -137,7 +137,7 @@ class _FlutterFormState extends State<FlutterForm> {
 
   onNextPage() {
     controller.animateToPage(currentIndex + 1,
-        duration: const Duration(seconds: 2), curve: Curves.fastOutSlowIn);
+        duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
     widget.form.onPageEdited(widget.form.pages[currentIndex]);
   }
 }
