@@ -63,7 +63,10 @@ class _SingleChoiceState extends State<SingleChoice> {
           constraints: const BoxConstraints(minWidth: 200),
           decoration: BoxDecoration(
               color: themeColor.withOpacity(hoveredIndex == index ? 0.2 : 0.1),
-              border: Border.all(color: themeColor),
+              border: Border.all(
+                  color: selectedOption == option
+                      ? themeColor
+                      : Colors.transparent),
               borderRadius: BorderRadius.circular(4)),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -87,8 +90,7 @@ class _SingleChoiceState extends State<SingleChoice> {
                 option,
                 style: textTheme.titleMedium?.copyWith(color: themeColor),
               ),
-              if (selectedOption == option)
-                Icon(Icons.check, color: themeColor)
+              if (selectedOption == option) Icon(Icons.check, color: themeColor)
             ],
           ),
         ),
